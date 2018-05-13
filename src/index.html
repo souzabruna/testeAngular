@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="content-language" content="pt-br" />
+      <title>Teste AngularJS</title>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+      <script src="jk-rating-stars.min.js"></script>
+      <script src="angular.js"></script>
+      <link href="jk-rating-stars.css" rel="stylesheet" type="text/css" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+   </head>
+   <body>
+      <app-root></app-root>
+      <div class="banner">
+
+      <div ng-app="app" class="sectionPrimary" ng-controller="ListaFilmesController">
+         
+         
+         <div class="container">
+         <div class="box-search">
+            <img src="assets/union-cosmos-Star-Wars-png-transparente.png" width="150px">
+            <input type="text" placeholder="Pesquisa..." name="search" data-ng-model="search">
+         </div>
+           <div class="content-item-table" >
+               <div class="table-item" ng-repeat="movie in movies.results | filter:search | orderBy:'+release_date'">
+                  <div class="item-image">
+                    <img class="image" src="assets/yoda.jpg">  
+                  </div>
+                  <div class="item-text">
+                     <h2 class="subtitle">{{movie.title}}</h2>
+                     <p>{{movie.episode_id}}</p>
+                     <p>{{movie.release_date}}</p>
+                     <p>{{movie.director}}</p>
+                     <p>{{movie.producer}}</p>
+                     <p>{{movie.opening_crawl}}</p>
+                  </div>
+               </div>
+            </div>
+         </div>   
+      </div>
+      </div>
+      <script>
+         angular.module('app', ['ui.bootstrap']);
+
+         function ListaFilmesController($scope, $http) {
+
+             $scope.movies;
+             var baseUrl = 'https://swapi.co/api/films/';
+
+              $http.get(baseUrl).then(function(response) {
+                $scope.movies = response.data;
+                console.log(response.data.results);
+
+              }, function(err) {
+                console.log(err);
+              });
+         }
+      </script>
+   </body>
+</html>
