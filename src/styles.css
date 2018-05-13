@@ -9,8 +9,12 @@ body {
 	background-size: 100%;
 	background-image: url("assets/fundo.jpg");
 	background-attachment: fixed;
-	background-repeat: no-repeat;
+} 
 
+.title {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .sectionPrimary {
@@ -107,6 +111,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	
 }
 
@@ -130,6 +135,12 @@ body {
 }
 
 @media (max-width: 700px){
+
+	.box-search {
+		justify-content: center;
+	}
+
+
 	.title {
 		width: 90%;
 	}
